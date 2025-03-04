@@ -16,11 +16,11 @@ class CheckAuth
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(auth()->check() && ($request->routeIs('login'))){
+        if(\Illuminate\Support\Facades\Auth::check() && ($request->routeIs('login'))){
             return redirect()->route('dashboard');
         }
 
-        if(!auth()->check() && !$request->routeIs('login')){
+        if(!\Illuminate\Support\Facades\Auth::check() && !$request->routeIs('login')){
             return redirect()->route('login');
         }
         return $next($request);
