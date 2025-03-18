@@ -2,9 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\User;
@@ -16,36 +14,52 @@ class RolePermissionSeeder extends Seeder
      */
     public function run(): void
     {
-       app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
-       $permissions =[
-        'create product',
-        'edit product',
-        'delete product',
-       ];
+        $permissions = [
+            'create product',
+            'edit product',
+            'delete product',
+            'create user',
+            'edit user',
+            'delete user',
+        ];
 
-       foreach($permissions as $permission){
-           Permission::updateOrCreate(['name' => $permission]);
-       }
+        foreach($permissions as $permission){
+            Permission::updateOrCreate(
+                ['name' => $permission],
+                ['guard_name' => 'web']
+            );
+        }
+        $administrator = Role::updateOrCreate(
+            ['name' => 'owner'],
+            ['guard_name' => 'web']
+        );
 
-         $administrator = Role::updateOrCreate(['name' => 'owner']);
-         $administrator->givePermissionTo(['create product', 'edit product', 'delete product']);
+        $administrator->syncPermissions($permissions);
 
-         $user = Role::updateOrCreate(['name' => 'user']);
-         $user->givePermissionTo(['create product']);
+        $user = Role::updateOrCreate(
+            ['name' => 'user'],
+            ['guard_name' => 'web']
+        );
+        $user->syncPermissions(['create product']);
 
-         $adminUser = User::updateOrCreate([
-             'name' => 'Administrator',
-             'email' => 'owner@sayurku.co.id',
-             'password' => bcrypt('admin123')
-         ]);
-         $adminUser->assignRole('owner'); 
+        $adminUser = User::updateOrCreate(
+            ['email' => 'owner@sayurku.co.id'],
+            [
+                'name' => 'Administrator',
+                'password'=> bcrypt('admin123'),
+            ]
+        );
+        $adminUser->assignRole('owner');
 
-         $User = User::updateOrCreate([
-            'name' => 'Administrator',
-            'email' => 'user@sayurku.co.id',
-            'password' => bcrypt('admin123')
+        $user = User::updateOrCreate(
+            ['email' => 'user@sayurku.co.id'],
+            
+        [  
+            'name' => 'user',
+            'password'=> bcrypt('admin123'),
         ]);
-        $User->assignRole('user'); 
+        $user->assignRole('user');
     }
 }

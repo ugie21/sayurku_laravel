@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductManagementController;
 use App\Http\Controllers\NavigationController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\UserManagementController;
 
 Route::get('/', [PageController::class, 'index']);
 Route::get('/about', [PageController::class, 'about']);
@@ -50,6 +51,14 @@ Route::post('/blog-management/store', [BlogController::class, 'store']);
 Route::get('/blog-management/edit/{id}', [BlogController::class, 'edit'])->middleware('CheckAuth');
 Route::post('/blog-management/update', [BlogController::class, 'update']);
 Route::get('/blog-management/delete/{id}', [BlogController::class, 'destroy']);
+
+//user
+Route::get('/user-management', [UserManagementController::class, 'index'])->middleware('CheckAuth');
+Route::get('/user-management/create', [UserManagementController::class, 'create'])->middleware('CheckAuth');
+Route::post('/user-management/store', [UserManagementController::class, 'store']);
+Route::get('/user-management/edit/{id}', [UserManagementController::class, 'edit'])->middleware('CheckAuth');
+Route::post('/user-management/update', [UserManagementController::class, 'update']);
+Route::get('/user-management/delete/{id}', [UserManagementController::class, 'destroy']);
 
 
 

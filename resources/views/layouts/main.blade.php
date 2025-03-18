@@ -42,7 +42,7 @@
                 @if($navigations)
                   @foreach($navigations as $navigation)
                   <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="">{{ $navigation->name }}</a>
+                    <a class="nav-link" aria-current="page" href="{{ url($navigation->slug) }}">{{ $navigation->name }}</a>
                   </li>
                   @endforeach
                 @endif               

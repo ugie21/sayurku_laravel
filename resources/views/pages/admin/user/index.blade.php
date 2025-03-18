@@ -9,8 +9,8 @@
             </div>
             <div class="row mb-3">
                 <div class="col-lg-12 d-flex justify-content-end">
-                @can('create product')
-                        <a href="{{ url($current_page. '/create') }}" class="btn btn-primary">Add New Product</a>
+                    @can('create user')
+                        <a href="{{ url($current_page. '/create') }}" class="btn btn-primary">Add New User</a>
                     @endcan
                 </div>
             </div>
@@ -25,19 +25,25 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Product Name</th>
+                                <th>User Name</th>
+                                <th>User Email</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @if($data)
-                                @foreach ($data as $dt)
+                            @foreach ($data as $key => $dt)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $dt->product_name }}</td>
+                                        <td>{{ $data->firstItem() + $key }}</td>
+                                        <td>{{ $dt->name }}</td>
+                                        <td>{{ $dt->email }}</td>
                                         <td>
-                                            <a href="{{ url($current_page.'/edit/' .$dt->id) }}" class="btn btn-outline-success">Edit</a>
-                                            <a href="{{ url($current_page.'/delete/' .$dt->id) }}" class="btn btn-outline-danger">Delete</a>
+                                            @can('edit user')
+                                                <a href="{{ url($current_page.'/edit/' .$dt->id) }}" class="btn btn-outline-success">Edit</a>
+                                            @endcan
+                                            @can('delete user')
+                                                <a href="{{ url($current_page.'/delete/' .$dt->id) }}" class="btn btn-outline-danger">Delete</a>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endforeach
