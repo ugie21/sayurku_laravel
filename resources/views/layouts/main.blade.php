@@ -23,8 +23,8 @@
                 </div>
                 <div class="col-lg-10">
                    <div class="d-flex justify-content-end">
-                        <form action="" method="get" class="search">
-                            <input type="text" name="search" id="search" placeholder="Cari di sayurku">
+                        <form action="{{ route('cari') }}" method="get" class="search">
+                            <input type="text" name="search" id="search" value="{{ request('search') }}" placeholder="Cari di sayurku">
                         </form>
                    </div>  
                 </div>

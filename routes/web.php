@@ -60,5 +60,8 @@ Route::get('/user-management/edit/{id}', [UserManagementController::class, 'edit
 Route::post('/user-management/update', [UserManagementController::class, 'update']);
 Route::get('/user-management/delete/{id}', [UserManagementController::class, 'destroy']);
 
+//search bar
+Route::get('/cari', [PageController::class, 'search'])->name('cari');
+
 
 
