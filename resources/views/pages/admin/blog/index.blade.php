@@ -23,7 +23,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Name</th>
+                                <th>Tittle</th>
                                 <th>Content</th>
                                 <th>Image</th>
                                 <th>Action</th>
@@ -34,7 +34,7 @@
                                 @foreach ($data as $dt)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $dt->name }}</td>
+                                        <td>{{ $dt->tittle }}</td>
                                         <td>{{ $dt->content }}</td>
                                         <td>{{ $dt->image }}</td>
                                         <td>

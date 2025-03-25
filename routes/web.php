@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductManagementController;
 use App\Http\Controllers\NavigationController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\PageManagementController;
 
 Route::get('/', [PageController::class, 'index']);
 Route::get('/about', [PageController::class, 'about']);
@@ -59,6 +60,14 @@ Route::post('/user-management/store', [UserManagementController::class, 'store']
 Route::get('/user-management/edit/{id}', [UserManagementController::class, 'edit'])->middleware('CheckAuth');
 Route::post('/user-management/update', [UserManagementController::class, 'update']);
 Route::get('/user-management/delete/{id}', [UserManagementController::class, 'destroy']);
+
+//Page Management
+Route::get('/page-management', [PageManagementController::class, 'index'])->middleware('CheckAuth');
+Route::get('/page-management/create', [PageManagementController::class, 'create'])->middleware('CheckAuth');
+Route::post('/page-management/store', [PageManagementController::class, 'store']);
+Route::get('/page-management/edit/{id}', [PageManagementController::class, 'edit'])->middleware('CheckAuth');
+Route::post('/page-management/update', [PageManagementController::class, 'update']);
+Route::get('/page-management/delete/{id}', [PageManagementController::class, 'destroy']);
 
 //search bar
 Route::get('/cari', [PageController::class, 'search'])->name('cari');

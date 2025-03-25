@@ -12,24 +12,18 @@
                 <div class="col-md-6">
                     <form id="submitForm" action="" enctype="multipart/form-data">
                         <div class="mb-3">
-                            <label for="name" class="form-label">Blog Name</label>
-                            <input type="text" name="name" class="form-control" id="name" value="">
+                            <label for="tittle" class="form-label">Name</label>
+                            <input type="text" name="tittle" class="form-control" id="tittle" value="">
                         </div>
 
                         <div class="mb-3">
-                            <label for="category" class="form-label">Content</label>
-                            <select name="category" id="category" class="form-select">
-                                <option value="admin">Admin</option>
-                                <option value="public">Public</option>
-                            </select>                          
+                            <label for="content" class="form-label">Content</label>
+                            <textarea name="content" id="content" class="form-control"></textarea>                      
                         </div>
 
                         <div class="mb-3">
-                            <label for="status" class="form-label">Image</label>
-                            <select name="status" id="status" class="form-select">
-                                <option value="show">Show</option>
-                                <option value="hide">Hide</option>
-                            </select>                          
+                            <label for="image" class="form-label">Image</label>
+                            <input type="file" class="form-control" name="image" id="image" value="">
                         </div>
 
                         <div class="mb-3 d-flex justify-content-end">

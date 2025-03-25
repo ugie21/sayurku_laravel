@@ -132,5 +132,4 @@ class ProductManagementController extends Controller
             return redirect('/product-management');
         }
     }
-    
 }

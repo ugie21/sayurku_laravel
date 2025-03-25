@@ -18,11 +18,8 @@
                         </div>
                         
                         <div class="mb-3">
-                            <label for="category" class="form-label">Content</label>
-                            <select name="category" id="category" class="form-select">
-                                <option value="admin" @if($detail->category == 'admin') selected @endif>Admin</option>
-                                <option value="public" @if($detail->category == 'public') selected @endif>Public</option>
-                            </select>                          
+                            <label for="content" class="form-label">Content</label>
+                            <textarea name="content" id="content" class="form-control"></textarea>                      
                         </div>
 
                         <div class="mb-3">

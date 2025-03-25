@@ -33,8 +33,7 @@ class BlogController extends Controller
       [
                 'page_title' => $this->page_title,
                 'current_page' => $this->url,
-                'navigations' => Blog::where('category', 'admin')->where('status', 'show')->get(),
-                'data' => Blog::all(),
+                'navigations' => Navigation::where('category', 'admin')->where('status', 'show')->get(),
                 'javascript_file' => 'admin/blog/create.js',
             ]  
         );  
@@ -42,20 +41,21 @@ class BlogController extends Controller
 
     public function store(Request $request){
         $validatedData = $request->validate([
-            'blog_name' => 'required',
-            'blog_description' => 'required',
-            'blog_image' =>'required|file|mimes:jpg,jpeg,png',
+            'tittle' => 'required',
+            'content' => 'required',
+            'image' =>'required|file|mimes:jpg,jpeg,png',
         ]);
 
         $folder_destination = 'uploads/blogs';
-        $file = $request->file('blog_image');
-        $file_name = time().'-'.$request->file('blog_image')->getClientOriginalName();
+        $file = $request->file('image');
+        $file_name = time().'-'.$request->file('image')->getClientOriginalName();
         $file->move($folder_destination, $file_name);
 
         try{
-            $data['blog_name'] = $request->blog_name;
-            $data['blog_description'] = $request->blog_description;
-            $data['blog_image'] = $folder_destination.'/'.$file_name;
+            $data['tittle'] = $request->tittle;
+            $data['slug'] = Str::slug($request->tittle);
+            $data['content'] = $request->content;
+            $data['image'] = $folder_destination.'/'.$file_name;
             if(Blog::create($data)){
                 return response()->json([
                     'status' => 201,
@@ -89,25 +89,26 @@ class BlogController extends Controller
 
     public function update(Request $request){
         $validatedData = $request->validate([
-            'blog_name' => 'required',
-            'blog_description' => 'required',
-            'blog_image' =>'nullable|file|mimes:jpg,jpeg,png',
+            'title' => 'required',
+            'content' => 'required',
+            'image' =>'nullable|file|mimes:jpg,jpeg,png',
         ]);
 
         try{
             $data = Blog::find($request->id);
 
             if($data){
-                $data->blog_name = $request->blog_name;
-                $data->blog_description = $request->blog_description;
+                $data->tittle = $request->tittle;
+                $data->slug = Str::slug($request->tittle);
+                $data->content = $request->content;
 
-                if($request->file('blog_image')){
+                if($request->file('image')){
                     $folder_destination = 'uploads/blogs';
-                    $file = $request->file('blog_image');
-                    $file_name = time().'-'.$request->file('blog_image')->getClientOriginalName();
+                    $file = $request->file('image');
+                    $file_name = time().'-'.$request->file('image')->getClientOriginalName();
                     $file->move($folder_destination, $file_name);
 
-                    $data->blog_image = $folder_destination.'/'.$file_name;
+                    $data->image = $folder_destination.'/'.$file_name;
                 }
 
                 $data->save();
@@ -134,5 +135,4 @@ class BlogController extends Controller
             return redirect('/blog-management');
         }
     }
-
 }
