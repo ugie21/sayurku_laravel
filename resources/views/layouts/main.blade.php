@@ -41,9 +41,15 @@
 
                 @if($navigations)
                   @foreach($navigations as $navigation)
-                  <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ url($navigation->slug) }}">{{ $navigation->name }}</a>
-                  </li>
+                    @if($navigation->slug != 'home')
+                      <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{{ url($navigation->slug) }}">{{ $navigation->name }}</a>
+                      </li>
+                    @else
+                      <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{{ url('/') }}">{{ $navigation->name }}</a>
+                      </li>
+                    @endif
                   @endforeach
                 @endif               
 

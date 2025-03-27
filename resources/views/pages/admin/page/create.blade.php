@@ -24,6 +24,14 @@
                             <label for="image" class="form-label">Image</label>
                             <input type="file" class="form-control" name="image" id="image" value="">
                         </div>
+                        <div class="mb-3">
+                            <label for="content_type" class="form-label">Content Type</label>
+                            <select name="content_type" id="content_type" class="form-select">
+                                <option value="">Choose Content Type</option>
+                                <option value="page">Page</option>
+                                <option value="blog">Blog</option>
+                            </select>
+                        </div>
                         <div class="mb-3 d-flex justify-content-end">
                             <button type="submit" class="btn btn-primary submit-data">Submit</button>
                         </div>

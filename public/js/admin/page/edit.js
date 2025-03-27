@@ -1,12 +1,19 @@
 $(document).ready(function(){
     const base_url = window.location.origin;
 
-    $(document).on("click", "#submit-data", function(e){
+    CreateTextEditor();
+
+    $(document).on("click", ".submit-data", function(e){
         e.preventDefault();
 
         $(".alert").remove();
         $(".invalid-feedback").remove();
         $("submittForm input").removeClass('is-invalid');
+
+        let content_textarea = tinymce.get('content_text');
+        let content = content_textarea.getContent();
+
+        $("#content").val(content);
 
         $("#submitForm").submit();
     });
@@ -17,7 +24,7 @@ $(document).ready(function(){
         let data = new FormData(this);
         
         $.ajax({
-            url:base_url+"/product-management/update",
+            url:base_url+"/page-management/update",
             type:'POST',
             data:data,
             contentType:false,
@@ -32,7 +39,7 @@ $(document).ready(function(){
                 if(response.status === 201){
                     $('<div class="alert alert-info">'+response.message+'</div>').insertBefore('#submitForm');
                     setTimeout(function(){
-                        window.location.href = base_url + '/product-management';
+                        window.location.href = base_url + '/page-management';
                     }, 2000);
                 }else{
                     $('<div class="alert alert-danger">'+response.message+'</div>').insertBefore('#submitForm');
@@ -54,4 +61,10 @@ $(document).ready(function(){
 
         });
     });
+
+    function CreateTextEditor(){
+        tinymce.init({
+            selector:'textarea'
+        });
+    }
 });

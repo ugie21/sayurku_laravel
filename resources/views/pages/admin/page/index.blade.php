@@ -24,6 +24,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Page Title</th>
+                                <th>Content Type</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -33,6 +34,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $dt->title }}</td>
+                                        <td>{{ $dt->content_type }}</td>
                                         <td>
                                             <a href="{{ url($current_page.'/edit/' .$dt->id) }}" class="btn btn-outline-success">Edit</a>
                                             <a href="{{ url($current_page.'/delete/' .$dt->id) }}" class="btn btn-outline-danger">Delete</a>

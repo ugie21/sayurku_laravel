@@ -12,7 +12,7 @@ $(document).ready(function(){
         let content_textarea = tinymce.get('content_text');
         let content = content_textarea.getContent();
 
-        $("#content").val(content)
+        $("#content").val(content);
 
         $("#submitForm").submit();
     });

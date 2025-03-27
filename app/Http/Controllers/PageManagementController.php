@@ -42,6 +42,7 @@ class PageManagementController extends Controller
             'title' => 'required',
             'content' => 'required',
             'image' =>'required|file|mimes:jpg,jpeg,png',
+            'content_type' => 'required',
         ]);
 
         $folder_destination = 'uploads/pages';
@@ -54,6 +55,7 @@ class PageManagementController extends Controller
             $data['slug'] = Str::slug($request->title);
             $data['content'] = $request->content;
             $data['image'] = $folder_destination.'/'.$file_name;
+            $data['content_type'] = $request->content_type;
             if(Page::create($data)){
                 return response()->json([
                     'status' => 201,
@@ -90,6 +92,7 @@ class PageManagementController extends Controller
             'title' => 'required',
             'content' => 'required',
             'image' =>'nullable|file|mimes:jpg,jpeg,png',
+            'content_type' => 'required',
         ]);
 
         try{
@@ -99,6 +102,7 @@ class PageManagementController extends Controller
                 $data->title = $request->title;
                 $data->slug =  Str::slug($request->title);
                 $data->content = $request->content;
+                $data->content_type = $request->content_type;
 
                 if($request->file('image')){
                     $folder_destination = 'uploads/pages';
@@ -106,7 +110,7 @@ class PageManagementController extends Controller
                     $file_name = time().'-'.$request->file('image')->getClientOriginalName();
                     $file->move($folder_destination, $file_name);
 
-                    $data->Page_image = $folder_destination.'/'.$file_name;
+                    $data->image = $folder_destination.'/'.$file_name;
                 }
 
                 $data->save();

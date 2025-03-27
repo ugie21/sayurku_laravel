@@ -92,13 +92,47 @@ p{
     padding-bottom: 20px;
 }
 
-.content h1{
-    font-family: "Roboto", serif;
+.page-title{
+    background-color: #ffffff;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
+.page-title p{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+}
 
-.content .list-group{
-   
+.page-content{
+    padding-top: 20px;
+}
+
+.page-title h1{
+    font-family: "Roboto", serif;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/*.content h2{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}*/
+
+.content .page-content h2{
+    font-family: "Roboto", serif;
+    text-align: left;
+    font-size: 18px;
+}
+
+.content .page-content p{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+}
+
+.content h1{
+    font-family: "Roboto", serif;
 }
 
 .content .list-group .list-group-item a{
@@ -215,5 +249,17 @@ h2{
 
 .copy-right{
     padding: 20px;
+}
+
+.tox .tox-promotion{
+    display: none !important;
+}
+
+.tox .tox-statusbar__branding{
+    display: none !important;
+}
+
+.tox .tox-statusbar{
+    display: none !important;
 }
 

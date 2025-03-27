@@ -12,10 +12,11 @@ use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\PageManagementController;
 
 Route::get('/', [PageController::class, 'index']);
-Route::get('/about', [PageController::class, 'about']);
-Route::get('/our-products', [PageController::class, 'products']);
-Route::get('/blogs', [PageController::class, 'blogs']);
-Route::get('/order-our-product', [PageController::class, 'order']);
+Route::get('/tentang-kami', [PageController::class, 'about']);
+Route::get('/produk-kami', [PageController::class, 'product']);
+Route::get('/produk-kami/{id}', [PageController::class, 'productDetail']);
+Route::get('/blog', [PageController::class, 'blogs']);
+Route::get('/pesan-sayuran', [PageController::class, 'order']);
 
 Route::post('submit-order', [OrderController::class, 'submitOrder']);
 
@@ -71,6 +72,7 @@ Route::get('/page-management/delete/{id}', [PageManagementController::class, 'de
 
 //search bar
 Route::get('/cari', [PageController::class, 'search'])->name('cari');
+
 
 
 
